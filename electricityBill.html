@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity Bill</title>
+
+    <!-- CSS -->
+     <link rel="stylesheet" href="electricityBill.css">
+    <!-- CSS -->
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+
+</head>
+<body>
+
+    <!-- Create an Project to input electricity unit charges and calculate total electricity bill according to the given condition:
+        • For first 50 units Rs. 0.50/unit 
+        • For next 100 units Rs. 0.75/unit
+        • For next 100 units Rs. 1.20/unit
+        • For unit above 250 Rs. 1.50/unit
+        • An additional surcharge of 20% is added to the bill -->
+
+    <div class="box">
+        <div class="innerBox">
+            <h3>Electricity Bill</h3>
+            <div class="enterunits">
+                <input type="number" class="no-spinners" name="" placeholder="Enter Units" id="units">
+                <button id="btn" onclick="billCheck()">Calculate Charge</button>
+            </div>
+            <div class="text">
+                <h1>Charge : </h1>
+                <h1>₹</h1>
+                <h1 id="Ammount">0</h1>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function billCheck(){
+
+            let Unit = document.getElementById("units").value;
+            let Ammount = document.getElementById("Ammount");
+            let x;
+            let tax;
+            let totalCharge;
+
+            if (Unit <= 50) {
+                x = +Unit * 0.5;
+                tax = +x * 0.2;
+                totalCharge = +x + +tax;
+                Ammount.innerText = Math.ceil(totalCharge).toLocaleString("en-IN");
+            }
+            if (Unit > 50 && Unit <= 150){
+                x = ((+Unit - 50) * 0.75) + 25;
+                tax = +x * 0.2;
+                totalCharge = +x + +tax;
+                Ammount.innerText = Math.ceil(totalCharge).toLocaleString("en-IN");
+            }
+            if (Unit > 150 && Unit <= 250){
+                x = ((+Unit - 150) * 1.2) + 100;
+                tax = +x * 0.2;
+                totalCharge = +x + +tax;
+                Ammount.innerText = Math.ceil(totalCharge).toLocaleString("en-IN");
+            }
+            if (Unit > 250){
+                x = ((+Unit - 250) * 1.5) + 220;
+                tax = +x * 0.2;
+                totalCharge = +x + +tax;
+                Ammount.innerText = Math.ceil(totalCharge).toLocaleString("en-IN");
+            }
+        }
+    </script>
+    
+</body>
+</html>
